@@ -14,7 +14,7 @@ const CreateBook = catchAsync(async (req, res) => {
 });
 const RetriveBooks = catchAsync(async (req, res) => {
   const queries = req.query;
-  console.log(queries);
+  console.log("queries from controller", queries);
   const result = await BookServices.RetriveAllBookFromDB(queries);
   sendResponse(res, {
     statusCode: httpStatus.OK,

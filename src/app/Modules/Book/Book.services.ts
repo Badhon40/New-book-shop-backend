@@ -7,6 +7,7 @@ const CreateBookInDB = async (payload: IBook) => {
   return result;
 };
 const RetriveAllBookFromDB = async (query: Record<string, unknown>) => {
+  console.log('query from service', query);
   const AllBookQuery = new QueryBuilder(Book.find(), query)
     .search(['author', 'category', 'title'])
     .filter()
