@@ -14,6 +14,17 @@ const BookSchema = new Schema<IBook>({
   quantity: { type: Number, required: true },
   inStock: { type: Boolean, required: true, default: true },
   isDeleted: { type: Boolean, default: false },
+  coverImage: { type: String },
+  rating: { type: Number, default: 0 },
+  numReviews: { type: Number, default: 0 },
+  publishedDate: { type: Date },
+  publisher: { type: String },
+  language: { type: String },
+  format: { type: String, enum: ['paperback', 'hardcover', 'ebook'] },
+  tags: [{ type: String }],
+  
+
+
 });
 
 const Book = model<IBook>('Book', BookSchema);

@@ -2,9 +2,7 @@ import { Router } from 'express';
 import authGurd from '../../middlewares/authGurd';
 import { orderController } from './Order.controller';
 const route = Router();
-
- route.patch('/verify-order', authGurd('admin'), orderController.verifyPayment);
-
+route.patch('/verify-order', authGurd('admin'));
 route.post(
   '/create-order',
   authGurd('user', 'admin'),
@@ -20,10 +18,5 @@ route.get(
   '/get-customer-orders',
   authGurd('user'),
   orderController.getCustomerOrder,
-);
-route.delete(
-  '/delete-customer-order/:orderId',
-  authGurd('admin'),
-  orderController.deleteCustomerOrder,
 );
 export const OrderRoutes = route;
