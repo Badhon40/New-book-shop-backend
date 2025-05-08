@@ -12,8 +12,6 @@ const createNewUser = catchAsync(async (req, res) => {
     req.body.password,
     Number(Config.bcrypt_salt_round),
   );
-
-  console.log(req.body)
   
   const userDataWithHashedPassword = {
     ...req.body,

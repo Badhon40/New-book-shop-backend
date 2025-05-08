@@ -9,15 +9,11 @@ type loginData = {
 
 const Login = async ({ email, password }: loginData) => {
   const userExist = await User.findOne({ email });
-   console.log("User Esists",userExist)
-
-  console.log(email,password)
   if (!userExist) {
     throw new Error('The user not found');
   }
 
   const isPasswordMatched = bcrypt.compareSync(password, userExist.password);
-  console.log('from line 22', isPasswordMatched);
   if (!isPasswordMatched) {
     throw new Error('Invalid password');
   }

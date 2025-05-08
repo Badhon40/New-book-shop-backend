@@ -7,18 +7,18 @@ import authGurd from '../../middlewares/authGurd';
 const router = Router();
 
 router.post(
-  '/create-new-user',
+  '/createUser',
   validateRequest(UserValidation.createUserValidationSchema),
   UserControllers.createNewUser,
 );
-router.get('/get-all-users', UserControllers.RetriveUsers);
+router.get('/getAllUsers', UserControllers.RetriveUsers);
 router.patch(
-  '/deactivate-user/:id',
+  '/deactivateUser/:id',
   authGurd('admin'),
   UserControllers.deactivateUser,
 );
 router.patch(
-  '/activate-user/:id',
+  '/activateUser/:id',
   authGurd('admin'),
   UserControllers.activateUser,
 );

@@ -10,7 +10,6 @@ type TRegister = {
 const RegisterUserIntoDb = async ({ name, email, password }: TRegister) => {
   // console.log('coming');
   // console.log('hashed password', password);
-  console.log('email', email, password, name);
   const result = await User.create({
     email,
     password,
