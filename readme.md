@@ -104,12 +104,12 @@ STRIPE_SECRET_KEY=your-stripe-secret-key
 
 | Method | Endpoint             | Description                    |
 | ------ | -------------------- | ------------------------------ |
-| GET    | `/api/books`         | Fetch all books                |
-| GET    | `/api/books/:id`     | Get details of a specific book |
-| POST   | `/api/auth/register` | Register a new user            |
-| POST   | `/api/auth/login`    | User login                     |
-| POST   | `/api/orders`        | Create a new order             |
-| GET    | `/api/orders`        | Fetch all orders               |
+| GET    | `/api/v1/books`         | Fetch all books                |
+| GET    | `/api/v1/books/:id`     | Get details of a specific book |
+| POST   | `/api/v1/auth/register` | Register a new user            |
+| POST   | `/api/v1/auth/login`    | User login                     |
+| POST   | `/api/v1/orders`        | Create a new order             |
+| GET    | `/api/v1/orders`        | Fetch all orders               |
 
 ## Deployment
 
