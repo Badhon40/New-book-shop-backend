@@ -8,8 +8,6 @@ const createUserValidationSchema = z.object({
     email: z.string({
       required_error: 'email is required',
       invalid_type_error: 'email must be a string',
-    }).email({
-      message: 'email must be a valid email address',
     }),
     password: z
       .string({

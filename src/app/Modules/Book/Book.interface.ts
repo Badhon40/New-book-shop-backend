@@ -7,7 +7,6 @@ enum Category {
 }
 
 export interface IBook {
-  url : string;
   title: string;
   author: string;
   category: keyof typeof Category;

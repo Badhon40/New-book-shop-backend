@@ -17,28 +17,6 @@ const UserSchema = new Schema<IUser>(
       enum: ['activated', 'deactivated'],
       default: 'activated',
     },
-    favoriteBooks: [
-      { 
-        type: Schema.Types.ObjectId,
-        ref: 'Book',
-
-      },
-    ],  
-    cart : [
-      { 
-        type: Schema.Types.ObjectId,
-        ref: 'Book',
-      },
-    ],
-    phone: { type: String },
-    address: { type: String },
-    orders : [
-      { 
-        type: Schema.Types.ObjectId,
-        ref: 'Order',
-      },
-    ],
-
   },
   {
     timestamps: true,
