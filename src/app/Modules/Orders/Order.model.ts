@@ -1,8 +1,10 @@
 import { model, Schema } from 'mongoose';
 import { IOrder } from './Order.interface';
+import { string } from 'zod';
 
 const OrderSchema = new Schema<IOrder>(
   {
+
     user: {
       type: Schema.Types.ObjectId,
       ref: 'User',
@@ -39,6 +41,8 @@ const OrderSchema = new Schema<IOrder>(
       method: String,
       date_time: String,
     },
+
+
   },
   {
     timestamps: true,

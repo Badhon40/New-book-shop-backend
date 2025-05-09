@@ -13,4 +13,7 @@ export interface IUser {
   createdAt?: Date;
   updatedAt?: Date;
   activity: 'activated' | 'deactivated';
+  orders?: Types.ObjectId[];
+  favorites?: Types.ObjectId[];
+  cart?: Types.ObjectId[];
 }

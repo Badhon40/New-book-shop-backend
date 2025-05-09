@@ -11,12 +11,31 @@ const UserSchema = new Schema<IUser>(
     },
     password: { type: String, required: true },
     role: { type: String, enum: ['user', 'admin'], default: 'user' },
+    address: { type: String },
     passwordChangeAt: { type: Number, default: Date.now() },
     activity: {
       type: String,
       enum: ['activated', 'deactivated'],
       default: 'activated',
     },
+    orders : [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'Order',
+      },
+    ],
+    favorites: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'Book',
+      },
+    ],
+    cart: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'Book',
+      },
+    ],
   },
   {
     timestamps: true,

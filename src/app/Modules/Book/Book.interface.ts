@@ -7,11 +7,14 @@ enum Category {
 }
 
 export interface IBook {
+  url : string;
   title: string;
   author: string;
   category: keyof typeof Category;
   description: string;
   quantity: number;
+  publisher: string;
+  publicationDate: Date;
   price: number;
   inStock: boolean;
   isDeleted: boolean;
