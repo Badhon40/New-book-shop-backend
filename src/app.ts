@@ -35,12 +35,12 @@ app.use(globalErrorHandler);
 const stripe = require('stripe')(Config.stripe_sk);
 
 app.post('/create-checkout-session', async (req, res) => {
-  console.log('test');
+  // console.log('test');
   try {
     const { product, user } = req.body;
 
-    console.log('product', product);
-    console.log('user', user);
+    // console.log('product', product);
+    // console.log('user', user);
     const lineItems = [
       {
         price_data: {
@@ -73,14 +73,14 @@ app.post('/create-checkout-session', async (req, res) => {
     //   session.id,
     // );
 
-    console.log('paymentConfirmation', session);
+    // console.log('paymentConfirmation', session);
     // const paymentIntent = await stripe.paymentIntents.retrieve(session.id);
 
     // console.log(`Payment status: ${paymentIntent.status}`);
 
     res.json({ id: session.id });
   } catch (error) {
-    console.error('Error creating checkout session:', error);
+    // console.error('Error creating checkout session:', error);
     res.status(500).json({ error: 'Failed to create session' });
   }
 });
@@ -91,7 +91,7 @@ app.get('/checkout-session/:sessionId', async (req, res) => {
       req.params.sessionId,
     );
 
-    console.log('Payment session details:', session);
+    // console.log('Payment session details:', session);
 
     const {
       email,
@@ -117,7 +117,7 @@ app.get('/checkout-session/:sessionId', async (req, res) => {
       productAuthor: product.author,
     });
   } catch (error) {
-    console.error('Error retrieving checkout session:', error);
+    // console.error('Error retrieving checkout session:', error);
     res.status(500).json({ error: 'Failed to retrieve session details' });
   }
 });
