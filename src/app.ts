@@ -15,13 +15,13 @@ app.use(cookieParser());
 
 // CORS Configuration
 const corsOptions = {
-  origin: ['http://localhost:3000'], // Frontend origin
+  origin: ['http://localhost:5173'], // Frontend origin
   credentials: true, // Allow cookies
 };
 
 // Apply CORS Middleware
 app.use(cors(corsOptions));
-app.use('/api', router);
+app.use('/api/v1', router);
 
 app.get('/', (req, res) => {
   res.send('Welcome to Book Shop');
@@ -58,8 +58,8 @@ app.post('/create-checkout-session', async (req, res) => {
       payment_method_types: ['card'],
       line_items: lineItems,
       mode: 'payment',
-      success_url: `http://localhost:3000/success?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: 'http://localhost:3000/failed',
+      success_url: `http://localhost:5173/success?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: 'http://localhost:5173/failed',
       metadata: {
         email: user.email,
         product: product._id,
