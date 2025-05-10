@@ -1,5 +1,6 @@
 import { Types } from 'mongoose';
 
+
 export interface IUser {
   id?: Types.ObjectId;
   name: string;
@@ -14,6 +15,5 @@ export interface IUser {
   updatedAt?: Date;
   activity: 'activated' | 'deactivated';
   orders?: Types.ObjectId[];
-  favorites?: Types.ObjectId[];
   cart?: Types.ObjectId[];
 }

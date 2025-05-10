@@ -1,6 +1,8 @@
 import { Schema, model } from 'mongoose';
 import { IUser } from './User.interface';
 
+
+
 const UserSchema = new Schema<IUser>(
   {
     name: { type: String, required: true },
@@ -24,12 +26,7 @@ const UserSchema = new Schema<IUser>(
         ref: 'Order',
       },
     ],
-    favorites: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: 'Book',
-      },
-    ],
+   
     cart: [
       {
         type: Schema.Types.ObjectId,
