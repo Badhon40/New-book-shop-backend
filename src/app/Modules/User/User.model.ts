@@ -20,19 +20,6 @@ const UserSchema = new Schema<IUser>(
       enum: ['activated', 'deactivated'],
       default: 'activated',
     },
-    orders : [
-      {
-        type: Schema.Types.ObjectId,
-        ref: 'Order',
-      },
-    ],
-   
-    cart: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: 'Book',
-      },
-    ],
   },
   {
     timestamps: true,

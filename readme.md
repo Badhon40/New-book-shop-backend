@@ -10,7 +10,6 @@ server link : (https://book-shop-backend-rho.vercel.app)
 
 * 📚 **Browse Books:** Discover a wide range of books across different genres.
 * 🔍 **Search & Filter:** Quickly find books by title, author, genre, or price.
-* 🛒 **Shopping Cart:** Add books to your cart and manage your selections before checkout.
 * 💳 **Secure Checkout:** Smooth and secure payment process.
 * 📝 **User Authentication:** Sign up, log in, and manage your account.
 * ⭐ **Ratings & Reviews:** View and add reviews for books.

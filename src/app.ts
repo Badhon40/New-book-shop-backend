@@ -1,36 +1,46 @@
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
-import express, { Application, Request, Response } from 'express';
-import Stripe from 'stripe';
+import express, { Application } from 'express';
 import router from './app/Routes';
 import { globalErrorHandler } from './app/middlewares/globalErrorHandler';
+
 import Config from './app/Config';
+
 import Book from './app/Modules/Book/Book.model';
 
 const app: Application = express();
-const stripe = require('stripe')(Config.stripe_sk);
-
-// Middleware
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors({ origin: ['http://localhost:5173'], credentials: true }));
+// app.use(cors());
 
-// Routes
+// CORS Configuration
+const corsOptions = {
+  origin: ['https://book-shop-frontend-weld-tau.vercel.app'], // Frontend origin
+  credentials: true, // Allow cookies
+};
+
+// Apply CORS Middleware
+app.use(cors(corsOptions));
 app.use('/api/v1', router);
 
-app.get('/', (req: Request, res: Response) => {
+app.get('/', (req, res) => {
   res.send('Welcome to Book Shop');
 });
 
-// Stripe Checkout Session Creation
-app.post('/api/v1/create-checkout-session', async (req: Request, res: Response) => {
+app.use(globalErrorHandler);
+
+// eslint-disable-next-line @typescript-eslint/no-require-imports, no-undef
+
+
+const stripe = require('stripe')(Config.stripe_sk);
+
+app.post('/create-checkout-session', async (req, res) => {
+  console.log('test');
   try {
     const { product, user } = req.body;
 
-    if (!product || !user) {
-      return res.status(400).json({ error: 'Product and user information are required.' });
-    }
-
+    console.log('product', product);
+    console.log('user', user);
     const lineItems = [
       {
         price_data: {
@@ -40,7 +50,7 @@ app.post('/api/v1/create-checkout-session', async (req: Request, res: Response) 
           },
           unit_amount: Math.round(product.price * 100),
         },
-        quantity: 1,
+        quantity: 1, // Ensure quantity is included
       },
     ];
 
@@ -59,6 +69,15 @@ app.post('/api/v1/create-checkout-session', async (req: Request, res: Response) 
       },
     });
 
+    // const paymentConfirmation = await stripe.checkout.sessions.retrieve(
+    //   session.id,
+    // );
+
+    console.log('paymentConfirmation', session);
+    // const paymentIntent = await stripe.paymentIntents.retrieve(session.id);
+
+    // console.log(`Payment status: ${paymentIntent.status}`);
+
     res.json({ id: session.id });
   } catch (error) {
     console.error('Error creating checkout session:', error);
@@ -66,10 +85,13 @@ app.post('/api/v1/create-checkout-session', async (req: Request, res: Response) 
   }
 });
 
-// Retrieve Checkout Session Details
-app.get('/api/v1/checkout-session/:sessionId', async (req: Request, res: Response) => {
+app.get('/checkout-session/:sessionId', async (req, res) => {
   try {
-    const session = await stripe.checkout.sessions.retrieve(req.params.sessionId);
+    const session = await stripe.checkout.sessions.retrieve(
+      req.params.sessionId,
+    );
+
+    console.log('Payment session details:', session);
 
     const {
       email,
@@ -78,7 +100,8 @@ app.get('/api/v1/checkout-session/:sessionId', async (req: Request, res: Respons
       totalPrice,
     } = session.metadata;
 
-    const product = await Book.findById(productId);
+    // Now fetch product details from DB using productId
+    const product = await Book.findById(productId); // Assuming `Product` is your Mongoose model
 
     if (!product) {
       return res.status(404).json({ error: 'Product not found' });
@@ -99,7 +122,11 @@ app.get('/api/v1/checkout-session/:sessionId', async (req: Request, res: Respons
   }
 });
 
-// Global Error Handler
-app.use(globalErrorHandler);
-
 export const App = app;
+
+
+
+
+
+
+
