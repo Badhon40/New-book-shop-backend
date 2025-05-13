@@ -35,31 +35,9 @@ const getReview = catchAsync(async (req, res) => {
   });
 });
 
-export const likeReview = catchAsync(async (req, res) => {
-  const { reviewId } = req.params;
-  const result = await reviewServices.increaseLike(reviewId);
-  sendResponse(res, {
-    statusCode: 200,
-    success: true,
-    message: 'increass like in review successfully',
-    data: result,
-  });
-});
 
-export const dislikeReview = catchAsync(async (req, res) => {
-  const { reviewId } = req.params;
-  const result = await reviewServices.decreaseLike(reviewId);
-  sendResponse(res, {
-    statusCode: 200,
-    success: true,
-    message: 'decriess like in review successfully',
-    data: result,
-  });
-});
 export const reviewControllers = {
   createReview,
   getAllReview,
   getReview,
-  likeReview,
-  dislikeReview,
 };

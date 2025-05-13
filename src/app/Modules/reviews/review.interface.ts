@@ -3,5 +3,4 @@ export interface IReview {
   name: string;
   rating: number;
   reviewMessage: string;
-  likeCount:number
 }

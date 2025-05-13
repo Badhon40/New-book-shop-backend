@@ -5,7 +5,7 @@ const ReviewSchema = new Schema(
     name: { type: String, required: true },
     rating: { type: Number, required: true },
     reviewMessage: { type: String, required: true },
-    likeCount: { type: Number },
+    
   },
   {
     timestamps: true,

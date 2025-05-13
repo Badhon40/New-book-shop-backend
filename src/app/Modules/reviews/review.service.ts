@@ -13,25 +13,9 @@ const getReview = async (bookId: string) => {
   const requests = await Review.find( {bookId}).exec();
   return requests;
 };
-const increaseLike = async (reviewId: string): Promise<number> => {
-  const review = await Review.findById(reviewId) 
-  if (!review) throw new Error('Review not found');
-  (review.likeCount as number) += 1 ;
-  await review.save();
-  return (review.likeCount as number);
-};
 
- const decreaseLike = async (reviewId: string) => {
-  const review = await Review.findById(reviewId);
-  if (!review) throw new Error('Review not found');
-  review.likeCount = Math.max(0, (review.likeCount as number) - 1);
-  await review.save();
-  return (review.likeCount as number);
-};
 export const reviewServices = {
   createReview,
   getAllReview,
-  getReview,
-  decreaseLike,
-  increaseLike
+  getReview
 };
