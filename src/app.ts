@@ -15,7 +15,9 @@ app.use(cookieParser());
 
 // CORS Configuration
 const corsOptions = {
-  origin: ['https://book-shop-frontend-weld-tau.vercel.app'], // Frontend origin
+  origin: ['https://book-shop-frontend-weld-tau.vercel.app',
+    "http://localhost:5173"
+  ], // Frontend origin
   credentials: true, // Allow cookies
 };
 
